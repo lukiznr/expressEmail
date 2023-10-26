@@ -24,14 +24,15 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/send-email', (req, res) => {
-  const { email, subject, message } = req.body;
+  const { email, subject, text, html } = req.body;
 
   // Pengaturan email yang akan dikirim
   const mailOptions = {
     from: 'Connectify <admin@luki.my.id>', 
     to: email,
     subject: subject,
-    text: message
+    text: text,
+    html: html
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
